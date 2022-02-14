@@ -1,3 +1,4 @@
+create database dbproject;
 use dbproject;
 create table Courses
 (
@@ -33,19 +34,21 @@ create table StudentCourseJoin(
 
 	CourseID int, 
 	StudentID varchar(50),
-	constraint student_fk foreign key(StudentID) references Students(StudentID),
-	constraint course_fk foreign key(CourseID) references Courses(CourseID)
+	constraint scj_student_fk foreign key(StudentID) references Students(StudentID),
+	constraint scj_course_fk foreign key(CourseID) references Courses(CourseID)
 	
-)
+);
+
+select * from StudentCourseJoin;
 
 create table Attends(
 	AID int identity(1000,1),
 	StudentID varchar(50),
-	CourseID varchar(50),
+	CourseID int,
 	ClassNo int,
 	ClassDate date default getDate(),
-	constraint student_fk foreign key(StudentID) references Students(StudentID),
-	constraint course_fk foreign key(CourseID) references Courses(CourseID)
+	constraint att_student_fk foreign key(StudentID) references Students(StudentID),
+	constraint att_course_fk foreign key(CourseID) references Courses(CourseID)
 )
 
 
