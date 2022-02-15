@@ -5,6 +5,7 @@
  */
 package ams;
 
+import Utilities.TableLoader;
 import ams.utils.DBConnect;
 import java.net.URL;
 import java.sql.Connection;
@@ -49,9 +50,9 @@ public class DashboardController implements Initializable {
     @FXML
     private Button updateBtn;
     
-    private ObservableList<ObservableList> data;
+    private TableLoader tableLoader;
  
-    private TableView tableview;
+    
     @FXML
     private Button refrestableBtn;
 
@@ -111,60 +112,7 @@ public class DashboardController implements Initializable {
     public void buildTable() throws ClassNotFoundException, SQLException {
         coursesTable.getItems().clear();
         coursesTable.getColumns().clear();
-        DBConnect dbc = new DBConnect();
-        dbc.connectToDB();
-        data = FXCollections.observableArrayList();
-        try {
-            
-            //SQL FOR SELECTING ALL OF CUSTOMER
-            String SQL = "SELECT * from Courses";
-            //ResultSet
-            ResultSet rs = dbc.queryToDB(SQL);
-
-            /**
-             * ********************************
-             * TABLE COLUMN ADDED DYNAMICALLY *
-             *********************************
-             */
-            for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-                //We are using non property style for making dynamic table
-                final int j = i;
-                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
-                        return new SimpleStringProperty(param.getValue().get(j).toString());
-                    }
-                });
- 
-                coursesTable.getColumns().addAll(col);
-                System.out.println("Column [" + i + "] ");
-            }
- 
-            /**
-             * ******************************
-             * Data added to ObservableList *
-             *******************************
-             */
-            while (rs.next()) {
-                //Iterate Row
-                ObservableList<String> row = FXCollections.observableArrayList();
-                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                    //Iterate Column
-                    row.add(rs.getString(i));
-                }
-                System.out.println("Row [1] added " + row);
-                data.add(row);
- 
-            }
- 
-            //FINALLY ADDED TO TableView
-            coursesTable.setItems(data);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error on Building Data");
-        }
-    
-    dbc.disconnectFromDB();
+        tableLoader.loadTable("Select * from Courses", coursesTable);
     }
 
     @FXML

@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Ashiq/Documents/NetBeansProjects/AMS/src/ams/utils/DBConnect.java</file>
-            <file>file:/C:/Users/Ashiq/Documents/NetBeansProjects/AMS/src/ams/DashboardController.java</file>
-            <file>file:/C:/Users/Ashiq/Documents/NetBeansProjects/AMS/src/ams/LoginController.java</file>
+            <file>file:/C:/Users/Ineffable/Desktop/DB%20Project/AMS/src/Utilities/TableLoader.java</file>
+            <file>file:/C:/Users/Ineffable/Desktop/DB%20Project/AMS/src/ams/AMS.java</file>
+            <file>file:/C:/Users/Ineffable/Desktop/DB%20Project/AMS/src/ams/DashboardController.java</file>
+            <file>file:/C:/Users/Ineffable/Desktop/DB%20Project/AMS/src/ams/LoginController.java</file>
+            <file>file:/C:/Users/Ineffable/Desktop/DB%20Project/AMS/src/Utilities/SceneLoader.java</file>
         </group>
     </open-files>
 </project-private>

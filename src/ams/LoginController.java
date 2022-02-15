@@ -5,6 +5,8 @@
  */
 package ams;
 
+import Utilities.SceneLoader;
+import Utilities.TableLoader;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -65,7 +67,8 @@ public class LoginController implements Initializable {
     private PasswordField signInPassword;
     @FXML
     private Text confirmSignUpTxt;
-
+    
+    private SceneLoader sceneLoader;
     public LoginController() {
 
     }
@@ -103,23 +106,19 @@ public class LoginController implements Initializable {
             errTextSignIn.setText("Username/Password can't be empty!");
         } else {
             ResultSet rs = dbc.queryToDB("select * from Users where username='" + username + "' and password='" + password + "';");
-
+            sceneLoader.loadPage("Dashboard.fxml", this, event);
+            
             if (rs == null || !rs.next()) {
                 errTextSignIn.setText("Enter Valid Username/Password");
                 new Shake(panelSignIn).play();
             } else {
                 System.out.println("Signed In Successfully.");
-                Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
-                Scene currentScr = new Scene(root);
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                currentStage.setScene(currentScr);
-                currentStage.setMaximized(true);
-                currentStage.show();
             }
         }
 
         dbc.disconnectFromDB();
     }
+    
 
     @FXML
     private void onClickSignUp(ActionEvent event) throws ClassNotFoundException, SQLException {
