@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="ams.AttendanceController">
+    <stylesheets>
+        <URL value="@attendance.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutX="126.0" layoutY="25.0" prefHeight="97.0" prefWidth="349.0">
+         <children>
+            <Label alignment="CENTER" layoutX="40.0" prefHeight="35.0" prefWidth="248.0" text="Attendance" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="39.0" prefHeight="35.0" prefWidth="248.0" text="Course no, section, semester" textAlignment="CENTER" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="att_tableview" layoutX="55.0" layoutY="122.0" prefHeight="200.0" prefWidth="495.0" />
+      <Label fx:id="totalPresent" layoutX="61.0" layoutY="340.0" prefHeight="17.0" prefWidth="125.0" text="Total Present :" />
+      <Label fx:id="totalAbsent" layoutX="425.0" layoutY="340.0" prefHeight="17.0" prefWidth="125.0" text="Total Absent :" />
+   </children>
+</AnchorPane>
