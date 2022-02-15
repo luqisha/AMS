@@ -5,8 +5,8 @@
  */
 package ams;
 
-import Utilities.SceneLoader;
-import Utilities.TableLoader;
+import ams.utils.SceneLoader;
+import ams.utils.TableLoader;
 import ams.utils.DBConnect;
 import java.net.URL;
 import java.sql.Connection;

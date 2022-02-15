@@ -5,8 +5,8 @@
  */
 package ams;
 
-import Utilities.SceneLoader;
-import Utilities.TableLoader;
+import ams.utils.SceneLoader;
+import ams.utils.TableLoader;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;

@@ -5,7 +5,7 @@
  */
 package ams;
 
-import Utilities.SceneLoader;
+import ams.utils.SceneLoader;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;

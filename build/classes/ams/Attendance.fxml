@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="ams.AttendanceController">
-    <stylesheets>
-        <URL value="@attendance.css" />
-    </stylesheets>
+
+<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="703.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="ams.AttendanceController">
    <children>
-      <AnchorPane layoutX="126.0" layoutY="25.0" prefHeight="97.0" prefWidth="349.0">
-         <children>
-            <Label alignment="CENTER" layoutX="40.0" prefHeight="35.0" prefWidth="248.0" text="Attendance" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="39.0" prefHeight="35.0" prefWidth="248.0" text="Course no, section, semester" textAlignment="CENTER" />
-         </children>
-      </AnchorPane>
-      <TableView fx:id="att_tableview" layoutX="55.0" layoutY="122.0" prefHeight="200.0" prefWidth="495.0" />
-      <Label fx:id="totalPresent" layoutX="61.0" layoutY="340.0" prefHeight="17.0" prefWidth="125.0" text="Total Present :" />
-      <Label fx:id="totalAbsent" layoutX="425.0" layoutY="340.0" prefHeight="17.0" prefWidth="125.0" text="Total Absent :" />
+      <TableView fx:id="attendancetable" layoutX="84.0" layoutY="249.0" prefHeight="200.0" prefWidth="354.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <TextField fx:id="courseNo" layoutX="84.0" layoutY="65.0" prefHeight="39.0" prefWidth="118.0" promptText="Course No" />
+      <TextField fx:id="classNo" layoutX="241.0" layoutY="123.0" prefHeight="39.0" prefWidth="118.0" promptText="Class No" />
+      <DatePicker fx:id="date" layoutX="84.0" layoutY="129.0" prefHeight="26.0" prefWidth="118.0" />
+      <Button layoutX="191.0" layoutY="184.0" mnemonicParsing="false" onAction="#onClickAttendance" prefHeight="39.0" prefWidth="118.0" text="Check" />
+      <TextField fx:id="session" layoutX="241.0" layoutY="65.0" prefHeight="39.0" prefWidth="118.0" promptText="Session" />
+      <Button layoutX="191.0" layoutY="457.0" mnemonicParsing="false" onAction="#onClickPresent" prefHeight="39.0" prefWidth="118.0" text="Present" />
+      <Button layoutX="320.0" layoutY="457.0" mnemonicParsing="false" onAction="#onClickAbsent" prefHeight="39.0" prefWidth="118.0" text="Absent" />
    </children>
 </AnchorPane>
