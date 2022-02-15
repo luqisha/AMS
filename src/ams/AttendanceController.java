@@ -154,6 +154,7 @@ public class AttendanceController implements Initializable {
         onClickAttendance(event);
 
         attendancetable.getSelectionModel().selectBelowCell();
+        
 
     }
 

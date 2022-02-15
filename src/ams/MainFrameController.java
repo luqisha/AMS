@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -44,6 +45,9 @@ public class MainFrameController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         try {
+            childAnchor.getChildren().add((Node)FXMLLoader.load(getClass().getResource("Dashboard.fxml")));
+    
+            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("VDrawer.fxml"));
             VBox vbox = loader.load();
             VDrawerController vdc = loader.getController();

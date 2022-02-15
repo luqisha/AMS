@@ -79,20 +79,18 @@ public class CourseDetailsController implements Initializable {
         // TODO
         try {
             //
-            this.thiscourseid = "1001"; //how to get the course id from previous page?:/
+            //this.thiscourseid = "1001"; //how to get the course id from previous page?:/
+            this.thiscourseid = TableLoader.CourseId; 
             
-            
-            
+            System.out.println("Init " + thiscourseid);
             this.qry_getAll = "Select * from Students where Students.StudentID in (select distinct StudentCourseJoin.StudentID from StudentCourseJoin where CourseID = '" + this.thiscourseid + "')";
 
             
             buildTable(qry_getAll);
             searchByMenu.setText("Search by ID");
             this.searchQuery_ = qry_getAll + " and StudentId like ";
-       
+            
            
-            headingLabel.setText(this.thiscourseid);
-            headingLabel.setAlignment(Pos.CENTER);
          
         
         } catch (ClassNotFoundException ex) {
@@ -101,6 +99,22 @@ public class CourseDetailsController implements Initializable {
             Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void SetHeading(String title){
+            headingLabel.setText(title);
+            headingLabel.setAlignment(Pos.CENTER);
+    }
+
+    public String getThiscourseid() {
+        return thiscourseid;
+    }
+
+    public void setThiscourseid(String thiscourseid) {
+        System.out.println("Setter " + thiscourseid );
+        this.thiscourseid = thiscourseid;
+    }
+    
+    
 
     public void buildTable(String q) throws ClassNotFoundException, SQLException {
 

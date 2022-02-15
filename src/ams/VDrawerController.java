@@ -35,8 +35,9 @@ public class VDrawerController implements Initializable {
     }    
 
     @FXML
-    private void onClickDashboard(ActionEvent event) {
-        System.out.println("clicked dashboard");
+    private void onClickDashboard(ActionEvent event) throws IOException {
+        anchorPane.getChildren().clear();
+        anchorPane.getChildren().add((Node)FXMLLoader.load(getClass().getResource("Dashboard.fxml")));
     }
 
     @FXML
@@ -46,6 +47,7 @@ public class VDrawerController implements Initializable {
 
     @FXML
     private void OnClickAttendance(ActionEvent event) throws IOException {
+        anchorPane.getChildren().clear();
         anchorPane.getChildren().add((Node)FXMLLoader.load(getClass().getResource("Attendance.fxml")));
     }
     

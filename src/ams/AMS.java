@@ -26,7 +26,7 @@ public class AMS extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         
-        Parent root = FXMLLoader.load(getClass().getResource("MainFrame.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scr = new Scene(root);
 
         primaryStage.setTitle("Login to Attendance Management System");

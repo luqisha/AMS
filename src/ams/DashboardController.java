@@ -8,28 +8,26 @@ package ams;
 import ams.utils.SceneLoader;
 import ams.utils.TableLoader;
 import ams.utils.DBConnect;
+import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -124,17 +122,33 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
-    private void onClickChecker(ActionEvent event) {
+    private void onClickChecker(ActionEvent event) throws IOException {
 
-        System.out.println(coursesTable.getSelectionModel().getSelectedItem().toString());
+        //System.out.println(coursesTable.getSelectionModel().getSelectedItem().toString());
 
         Object s = coursesTable.getSelectionModel().getSelectedItems().get(0);
 
-        System.out.println(s.toString().split(", ")[0].substring(1));
+        //System.out.println(s.toString().split(", ")[1].substring(1));
 
         String courseID = s.toString().split(", ")[0].substring(1); //got the 1st column of selected row -> first col = course id
+        //System.out.println(courseID);
+        
+        TableLoader.CourseId = courseID;
+        
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner((Stage) ((Node) event.getSource()).getScene().getWindow());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CourseDetails.fxml"));
 
+        Parent rootPane = (Parent) loader.load();
+        CourseDetailsController controller = loader.getController();
+        controller.SetHeading(s.toString().split(", ")[2]);
+        Scene dialogScene = new Scene(rootPane);
+        dialog.setScene(dialogScene);
+        dialog.show();
+        
         //sceneLoader.loadPage("CourseDetails.fxml", this, event);
     }
         
 }
+

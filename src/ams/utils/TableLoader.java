@@ -23,6 +23,8 @@ import javafx.util.Callback;
  */
 public class TableLoader {
     
+    public static String CourseId;
+    
     public static void loadTable(String query, TableView tableView) throws ClassNotFoundException, SQLException{
         
         tableView.getItems().clear();
