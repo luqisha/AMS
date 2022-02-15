@@ -7,10 +7,14 @@ package ams;
 
 import ams.utils.DBConnect;
 import ams.utils.TableLoader;
+import com.sun.javafx.collections.ObservableListWrapper;
+import com.sun.javafx.collections.ObservableSequentialListWrapper;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Observable;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -78,15 +82,13 @@ public class AttendanceController implements Initializable {
         
         
     }
-
-    @FXML
-    private void onClickAttendance(ActionEvent event) throws ClassNotFoundException, SQLException {
-        
+    
+    private Integer getCourseID() throws ClassNotFoundException, SQLException{
         String query = "Select * from Courses where CourseNo = '"+
                 courseNo.getText()+"'AND CourseSession = '" + session.getText()+"';";
         
         if(!Validate()){
-            return;
+            return 0;
         }
        
         DBConnect dbc = new DBConnect();
@@ -102,7 +104,21 @@ public class AttendanceController implements Initializable {
         
         System.out.println(courseId);
         
-        query = "SELECT SelectedStudents.StudentID,\n" +
+        dbc.disconnectFromDB();
+        
+        return courseId;
+        
+    }
+
+    @FXML
+    private void onClickAttendance(ActionEvent event) throws ClassNotFoundException, SQLException {
+        
+        DBConnect dbc = new DBConnect();
+        dbc.connectToDB();
+       
+        Integer courseId = getCourseID();
+        
+         String query = "SELECT SelectedStudents.StudentID,\n" +
         "CASE WHEN SelectedAttends.ClassNo IS NULL THEN 0\n" +
         "ELSE 1\n" +
         "END AS Present\n" +
@@ -113,13 +129,39 @@ public class AttendanceController implements Initializable {
         "ON SelectedAttends.StudentID = SelectedStudents.StudentID;";
 
         tableLoader.loadTable(query, attendancetable);
+        
+        dbc.disconnectFromDB();
     }
 
     @FXML
-    private void onClickPresent(ActionEvent event) {
+    private void onClickPresent(ActionEvent event) throws ClassNotFoundException, SQLException {
         
-    }
+        if(!Validate()){
+            return;
+        }
+        
+        ObservableListWrapper obj = (ObservableListWrapper)attendancetable.getSelectionModel().getSelectedItem();
+        
+        String studentId = obj.get(0).toString();
+        
+        Integer courseId = getCourseID();
+        
+        String query = "INSERT INTO Attends(StudentID,CourseID,ClassNo,ClassDate) VALUES('"+studentId+"',"+
+                courseId+","+classNo.getText()+",GETDATE());";
+        
+        System.out.println(query);
+        DBConnect dbc = new DBConnect();
+        dbc.connectToDB();
+        dbc.queryToDB(query);
+                
+        dbc.disconnectFromDB();
+        
+        onClickAttendance(event);
+        
+        attendancetable.getSelectionModel().selectBelowCell();
 
+
+    }
     @FXML
     private void onClickAbsent(ActionEvent event) {
     }

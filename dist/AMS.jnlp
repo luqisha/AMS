@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="AMS.jar" size="49041" download="eager" />
+    <jar href="AMS.jar" size="49587" download="eager" />
     <jar href="lib/AnimateFX-1.2.1.jar" size="94267" download="eager" />
     <jar href="lib/jfoenix-8.0.10.jar" size="2710207" download="eager" />
     <jar href="lib/mssql-jdbc-9.4.1.jre8.jar" size="1346759" download="eager" />
