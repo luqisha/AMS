@@ -20,6 +20,7 @@ import javafx.stage.Stage;
  *
  * @author Ashiq
  */
+
 public class AMS extends Application {
     
     @Override

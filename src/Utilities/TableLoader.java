@@ -19,11 +19,15 @@ import javafx.util.Callback;
 /**
  *
  * @author Ineffable
+ * 
  */
 public class TableLoader {
     
     public static void loadTable(String query, TableView tableView) throws ClassNotFoundException, SQLException{
-         ObservableList<ObservableList> data;
+        
+        tableView.getItems().clear();
+        tableView.getColumns().clear();
+        ObservableList<ObservableList> data;
 
         DBConnect dbc = new DBConnect();
         dbc.connectToDB();

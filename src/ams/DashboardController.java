@@ -110,8 +110,7 @@ public class DashboardController implements Initializable {
     }
     
     public void buildTable() throws ClassNotFoundException, SQLException {
-        coursesTable.getItems().clear();
-        coursesTable.getColumns().clear();
+        // fetches data from database);
         tableLoader.loadTable("Select * from Courses", coursesTable);
     }
 
