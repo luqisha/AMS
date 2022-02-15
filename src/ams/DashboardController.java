@@ -5,6 +5,7 @@
  */
 package ams;
 
+import Utilities.SceneLoader;
 import Utilities.TableLoader;
 import ams.utils.DBConnect;
 import java.net.URL;
@@ -43,14 +44,13 @@ public class DashboardController implements Initializable {
     private TextField courseNoTxt;
     @FXML
     private TextField courseTitleTxt;
-    @FXML
     private TextField sessionTxt;
     @FXML
     private Button insertBtn;
     
     private TableLoader tableLoader;
  
-    
+    private SceneLoader sceneLoader;
     @FXML
     private Button refrestableBtn;
 
@@ -125,8 +125,16 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void onClickChecker(ActionEvent event) {
-        
+
         System.out.println(coursesTable.getSelectionModel().getSelectedItem().toString());
+
+        Object s = coursesTable.getSelectionModel().getSelectedItems().get(0);
+
+        System.out.println(s.toString().split(", ")[0].substring(1));
+
+        String courseID = s.toString().split(", ")[0].substring(1); //got the 1st column of selected row -> first col = course id
+
+        //sceneLoader.loadPage("CourseDetails.fxml", this, event);
     }
         
 }
