@@ -47,8 +47,6 @@ public class DashboardController implements Initializable {
     private TextField sessionTxt;
     @FXML
     private Button insertBtn;
-    @FXML
-    private Button updateBtn;
     
     private TableLoader tableLoader;
  
@@ -75,9 +73,6 @@ public class DashboardController implements Initializable {
     }
 
 
-    @FXML
-    private void onClickUpdate(ActionEvent event) {
-    }
 
     @FXML
     private void onClickInsert(ActionEvent event) throws ClassNotFoundException, SQLException {
@@ -126,6 +121,12 @@ public class DashboardController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void onClickChecker(ActionEvent event) {
+        
+        System.out.println(coursesTable.getSelectionModel().getSelectedItem().toString());
     }
         
 }
