@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" onMouseClicked="#debuglog" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #568052;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ams.CourseDetailsController">
+    <stylesheets>
+        <URL value="@coursedetails.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutX="90.0" layoutY="126.0" prefHeight="251.0" prefWidth="446.0" stylesheets="@coursedetails.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TableView fx:id="courseDetailsTbl" layoutX="90.0" layoutY="-14.0" prefHeight="163.0" prefWidth="347.0" style="-fx-background-color: #c6f7c1;" stylesheets="@coursedetails.css" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="0.0" />
+            <Button id="addNewStd" fx:id="addNewStd" layoutX="297.0" layoutY="167.0" mnemonicParsing="false" onAction="#onClickInsert" prefHeight="37.0" prefWidth="274.0" style="-fx-background-color: #255919; -fx-text-fill: #ffffff; -fx-font-weight: bold;" text="Add New Student" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="297.0" AnchorPane.rightAnchor="29.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Glow level="0.32" />
+               </effect></Button>
+            <Button id="refresh" fx:id="refresh" layoutX="487.0" layoutY="210.0" mnemonicParsing="false" onAction="#onClickRefresh" prefHeight="37.0" prefWidth="84.0" style="-fx-background-color: #255919; -fx-text-fill: #ffffff; -fx-font-weight: bold;" text="Refresh" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="29.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Glow level="0.32" />
+               </effect></Button>
+            <TextField fx:id="id_tf" alignment="CENTER" layoutX="26.0" layoutY="167.0" prefHeight="37.0" prefWidth="252.0" promptText="ID" AnchorPane.leftAnchor="29.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="29.0" layoutY="66.0" prefHeight="46.0" prefWidth="542.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="29.0">
+         <children>
+            <MenuButton fx:id="searchByMenu" layoutX="220.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="121.0" text="Search By">
+               <items>
+                  <MenuItem fx:id="searchBy_id" mnemonicParsing="false" onAction="#onClickSearchById" text="ID" />
+                  <MenuItem fx:id="searchBy_name" mnemonicParsing="false" onAction="#onClickSearchByName" text="Name" />
+                  <MenuItem fx:id="searchBy_section" mnemonicParsing="false" onAction="#onClickSearchBySection" text="Section" />
+                  <MenuItem fx:id="searchBy_semester" mnemonicParsing="false" onAction="#onClickSearchBySemester" text="Semester" />
+               </items>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuButton>
+            <Button fx:id="search_btn" layoutX="358.0" layoutY="11.0" mnemonicParsing="false" onAction="#onClickSearch" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: #255919; -fx-text-fill: #ffffff; -fx-font-weight: bold;" text="Search" AnchorPane.rightAnchor="0.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Glow level="0.32" />
+               </effect></Button>
+            <TextField fx:id="search_tf" alignment="CENTER" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" promptText="search" AnchorPane.leftAnchor="0.0">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+         </children></AnchorPane>
+      <Label fx:id="headingLabel" alignment="CENTER" layoutX="265.0" layoutY="26.0" prefHeight="17.0" prefWidth="186.0" text="get(course name)" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color blue="0.40035971999168396" green="0.75" red="0.15000000596046448" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </Label>
+   </children>
+</AnchorPane>
