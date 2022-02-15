@@ -35,6 +35,8 @@ public class MainFrameController implements Initializable {
     @FXML
     private JFXDrawer drawer;
     private SceneLoader sceneLoader;
+    @FXML
+    private AnchorPane childAnchor;
     /**
      * Initializes the controller class.
      */
@@ -42,7 +44,10 @@ public class MainFrameController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         try {
-            VBox vbox = FXMLLoader.load(getClass().getResource("VDrawer.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("VDrawer.fxml"));
+            VBox vbox = loader.load();
+            VDrawerController vdc = loader.getController();
+            vdc.anchorPane = childAnchor;
             drawer.setSidePane(vbox);
             
         } catch (IOException ex) {
@@ -58,16 +63,16 @@ public class MainFrameController implements Initializable {
             
             if(drawer.isOpened()) {
                 drawer.close();
+                childAnchor.setTranslateX(0);
             }
             else {
+                
+                childAnchor.setTranslateX(200);
                 drawer.open();
             }
         });
 
     }    
-
-  
-
 
 
 }

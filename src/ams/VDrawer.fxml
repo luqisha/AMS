@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<VBox depthTest="ENABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #1d662a;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ams.VDrawerController">
+<VBox depthTest="ENABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #1d662a;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ams.VDrawerController">
    <children>
       <Button depthTest="ENABLE" mnemonicParsing="false" onAction="#onClickDashboard" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #6ecc7f;" text="Dashboard">
          <VBox.margin>
@@ -46,7 +46,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button depthTest="ENABLE" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #6ecc7f;" text="Other Options">
+      <Button depthTest="ENABLE" mnemonicParsing="false" onAction="#OnClickAttendance" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #6ecc7f;" text="Attendance">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>
@@ -118,7 +118,7 @@
    <effect>
       <DropShadow height="41.52" radius="20.26" spread="0.02" width="41.52">
          <color>
-            <Color blue="0.23282164335250854" green="0.23282164335250854" red="0.5131579041481018" />
+            <Color red="0.5131579041481018" green="0.23282164335250854" blue="0.23282164335250854" />
          </color>
       </DropShadow>
    </effect>
