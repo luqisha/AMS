@@ -41,14 +41,15 @@ public class VDrawerController implements Initializable {
     }
 
     @FXML
-    private void onClickCourseDetails(ActionEvent event) {
-        System.out.println("tickled course details");
-    }
-
-    @FXML
     private void OnClickAttendance(ActionEvent event) throws IOException {
         anchorPane.getChildren().clear();
         anchorPane.getChildren().add((Node)FXMLLoader.load(getClass().getResource("Attendance.fxml")));
+    }
+
+    @FXML
+    private void onClickQuizMarks(ActionEvent event) throws IOException {
+        anchorPane.getChildren().clear();
+        anchorPane.getChildren().add((Node)FXMLLoader.load(getClass().getResource("QuizMarks.fxml")));
     }
     
 }
