@@ -42,6 +42,7 @@ public class DashboardController implements Initializable {
     private TextField courseNoTxt;
     @FXML
     private TextField courseTitleTxt;
+    @FXML
     private TextField sessionTxt;
     @FXML
     private Button insertBtn;

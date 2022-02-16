@@ -6,15 +6,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ams.AttendanceController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ams.AttendanceController">
    <children>
-      <TableView fx:id="attendancetable" layoutX="84.0" layoutY="249.0" prefHeight="200.0" prefWidth="354.0" />
-      <TextField fx:id="courseNo" layoutX="84.0" layoutY="65.0" prefHeight="39.0" prefWidth="118.0" promptText="Course No" />
-      <TextField fx:id="classNo" layoutX="241.0" layoutY="123.0" prefHeight="39.0" prefWidth="118.0" promptText="Class No" />
-      <DatePicker fx:id="date" layoutX="84.0" layoutY="129.0" prefHeight="26.0" prefWidth="118.0" />
-      <Button layoutX="191.0" layoutY="184.0" mnemonicParsing="false" onAction="#onClickAttendance" prefHeight="39.0" prefWidth="118.0" text="Check" />
-      <TextField fx:id="session" layoutX="241.0" layoutY="65.0" prefHeight="39.0" prefWidth="118.0" promptText="Session" />
-      <Button layoutX="191.0" layoutY="457.0" mnemonicParsing="false" onAction="#onClickPresent" prefHeight="39.0" prefWidth="118.0" text="Present" />
-      <Button layoutX="320.0" layoutY="457.0" mnemonicParsing="false" onAction="#onClickAbsent" prefHeight="39.0" prefWidth="118.0" text="Absent" />
+      <TableView fx:id="attendancetable" layoutX="143.0" layoutY="211.0" prefHeight="200.0" prefWidth="354.0" />
+      <TextField fx:id="courseNo" layoutX="154.0" layoutY="39.0" prefHeight="39.0" prefWidth="118.0" promptText="Course No" />
+      <TextField fx:id="classNo" layoutX="332.0" layoutY="97.0" prefHeight="39.0" prefWidth="118.0" promptText="Class No" />
+      <DatePicker fx:id="date" layoutX="154.0" layoutY="104.0" prefHeight="26.0" prefWidth="118.0" />
+      <Button layoutX="261.0" layoutY="157.0" mnemonicParsing="false" onAction="#onClickAttendance" prefHeight="39.0" prefWidth="118.0" text="Check" />
+      <TextField fx:id="session" layoutX="332.0" layoutY="39.0" prefHeight="39.0" prefWidth="118.0" promptText="Session" />
+      <Button layoutX="154.0" layoutY="418.0" mnemonicParsing="false" onAction="#onClickPresent" prefHeight="39.0" prefWidth="118.0" text="Present" />
+      <Button layoutX="370.0" layoutY="418.0" mnemonicParsing="false" onAction="#onClickAbsent" prefHeight="39.0" prefWidth="118.0" text="Absent" />
    </children>
 </AnchorPane>
