@@ -72,6 +72,10 @@ public class CourseDetailsController implements Initializable {
     private TextField semester_tf;
     @FXML
     private Label headingLabel;
+    @FXML
+    private TextField totalClass_tf;
+    @FXML
+    private Button attMark_btn;
 
 
     @Override
@@ -232,12 +236,54 @@ public class CourseDetailsController implements Initializable {
         System.out.println(this.searchQuery_);
     }
 
+
+
     @FXML
-    private void debuglog(MouseEvent event) {
+    private void onClickAttMark(ActionEvent event) {
+        //eval att mark
+        int totalClasses = Integer.valueOf(totalClass_tf.getText());
+        int entries = 0;
+        double mark = entries / totalClasses * 10;
+//            select StudentID, StudentName, section, semester, (SELECT 
+//            COUNT(AID) FROM ATTENDS where studentID =190104143 AND CourseNo = CSE3101) / totalClasses * 10  as att_mark 
+//            from Students
+
+        String query_withAttendMarks =  "Select *, ((SELECT   COUNT(AID) FROM ATTENDS where studentID = Students.StudentID AND CourseID = " + this.thiscourseid + ") * 10.0)/" + totalClasses + "  as att_mark from Students where Students.StudentID in (select distinct StudentCourseJoin.StudentID from StudentCourseJoin where CourseID = " + this.thiscourseid + ")";
+        
+        try {
+            buildTable(query_withAttendMarks);
+            
+            
+//select StudentID, StudentName, section, semester,
+//(SELECT   COUNT(AID) FROM ATTENDS where studentID ='1' AND CourseID = 1001) / 5.0 * 10  as att_mark
+//from Students
+//entires =
+//SELECT
+//COUNT(AID) FROM ATTENDS
+//where studentID =190104143 AND CourseNo = CSE3101;
+//
+//AID    CLS ID        Course Date
+//12312 1 190104143 CSE3101 5/3/22
+//12312 3 190104143 CSE3101 5/3/22
+//12312 4 190104143 CSE3101 5/3/22
+//SELECT
+//COUNT(AID) AS CNT FROM ATTENDS
+//where StudentID =190104116 AND CourseID = 1001;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CourseDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CourseDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
     }
 
  
-
+    @FXML
+    private void debuglog(MouseEvent event) {
+    }
 
     
  
