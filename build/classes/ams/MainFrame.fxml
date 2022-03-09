@@ -5,16 +5,16 @@
 <?import java.net.URL?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="780.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ams.MainFrameController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="790.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ams.MainFrameController">
     <stylesheets>
         <URL value="@mainframe.css" />
     </stylesheets>
    <children>
-      <JFXDrawer fx:id="drawer" layoutX="-9.0" prefHeight="480.0" prefWidth="140.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="150.0" layoutX="-9.0" prefHeight="480.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <JFXHamburger fx:id="hamburger" layoutX="14.0" layoutY="14.0">
          <cursor>
            <!-- <Cursor fx:constant="HAND" /> -->
          </cursor></JFXHamburger>
-      <AnchorPane fx:id="childAnchor" layoutX="100.0" layoutY="50.0" prefHeight="480.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="childAnchor" layoutX="100.0" layoutY="50.0" prefHeight="480.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

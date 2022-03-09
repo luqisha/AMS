@@ -106,13 +106,14 @@ public class LoginController implements Initializable {
             errTextSignIn.setText("Username/Password can't be empty!");
         } else {
             ResultSet rs = dbc.queryToDB("select * from Users where username='" + username + "' and password='" + password + "';");
-            sceneLoader.loadPage("MainFrame.fxml", this, event);
+            
             
             if (rs == null || !rs.next()) {
                 errTextSignIn.setText("Enter Valid Username/Password");
                 new Shake(panelSignIn).play();
             } else {
                 System.out.println("Signed In Successfully.");
+                sceneLoader.loadPage("MainFrame.fxml", this, event);
             }
         }
 
@@ -152,8 +153,6 @@ public class LoginController implements Initializable {
             confirmSignUpTxt.setText("Signed Up Failed!");
             confirmSignUpTxt.setFill(Color.RED);
         }
-        
-        
 
         dbc.disconnectFromDB();
     }

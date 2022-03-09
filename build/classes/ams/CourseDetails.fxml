@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMouseClicked="#debuglog" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #568052;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ams.CourseDetailsController">
+<AnchorPane id="AnchorPane" onMouseClicked="#debuglog" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #87ba82;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ams.CourseDetailsController">
     <stylesheets>
         <URL value="@coursedetails.css" />
     </stylesheets>
@@ -42,6 +42,19 @@
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>
+            <TextField fx:id="totalClass_tf" alignment="CENTER" layoutX="29.0" layoutY="210.0" prefHeight="37.0" prefWidth="252.0" promptText="Total Class Count">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Button fx:id="attMark_btn" layoutX="297.0" layoutY="210.0" mnemonicParsing="false" onAction="#onClickAttMark" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: #255919; -fx-text-fill: #ffffff; -fx-font-weight: bold;" text="Calculate Attendance Mark">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Glow level="0.32" />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="29.0" layoutY="66.0" prefHeight="46.0" prefWidth="542.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="29.0">
@@ -64,7 +77,7 @@
                <effect>
                   <Glow level="0.32" />
                </effect></Button>
-            <TextField fx:id="search_tf" alignment="CENTER" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" promptText="search" AnchorPane.leftAnchor="0.0">
+            <TextField fx:id="search_tf" alignment="CENTER" layoutY="11.0" prefHeight="25.0" prefWidth="200.0" promptText="Search" AnchorPane.leftAnchor="0.0">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>

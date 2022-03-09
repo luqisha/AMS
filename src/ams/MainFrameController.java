@@ -54,6 +54,7 @@ public class MainFrameController implements Initializable {
             vdc.anchorPane = childAnchor;
             drawer.setSidePane(vbox);
             
+            
         } catch (IOException ex) {
             Logger.getLogger(MainFrameController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -71,7 +72,7 @@ public class MainFrameController implements Initializable {
             }
             else {
                 
-                childAnchor.setTranslateX(200);
+                childAnchor.setTranslateX(0);
                 drawer.open();
             }
         });

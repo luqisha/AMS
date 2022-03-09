@@ -18,7 +18,14 @@
         <URL value="@login.css" />
     </stylesheets>
    <children>
-      <Pane prefHeight="400.0" prefWidth="230.0" style="-fx-background-color: #426ff5;" />
+      <Pane prefHeight="400.0" prefWidth="230.0" style="-fx-background-color: #426ff5;">
+         <children>
+            <ImageView fitHeight="233.0" fitWidth="249.0" layoutX="-1.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/login-art.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
       <StackPane layoutX="230.0" prefHeight="400.0" prefWidth="370.0">
          <children>
             <Pane fx:id="panelSignUp" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;">

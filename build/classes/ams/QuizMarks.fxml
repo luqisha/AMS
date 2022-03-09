@@ -1,38 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ams.QuizMarksController">
    <children>
-      <TabPane prefHeight="480.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="640.0" side="RIGHT" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Show QuizMarks">
+          <Tab closable="false" text="Show QuizMarks">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="quizMarksTableView" layoutX="233.0" layoutY="58.0" prefHeight="360.0" prefWidth="386.0" />
-                        <TextField fx:id="txtFieldCourseName" layoutX="40.0" layoutY="97.0" promptText="Course name" />
-                        <TextField fx:id="txtFieldQuizNo" layoutX="40.0" layoutY="134.0" promptText="Quiz No" />
-                        <Button fx:id="btnFindMarks" layoutX="31.0" layoutY="213.0" mnemonicParsing="false" onAction="#onClickFindMarks" prefHeight="25.0" prefWidth="75.0" text="Find Marks" />
-                        <TextField fx:id="txtFieldSID" layoutX="40.0" layoutY="169.0" promptText="Student ID" />
-                        <Button fx:id="btnReset" defaultButton="true" layoutX="134.0" layoutY="213.0" mnemonicParsing="false" onAction="#onClickReset" prefHeight="25.0" prefWidth="75.0" text="Reset" />
-                        <ComboBox fx:id="dropDownFindBy" layoutX="40.0" layoutY="58.0" onAction="#onClickDropDown" prefWidth="150.0" promptText="Find By" />
+                        <TableView fx:id="quizMarksTableView" layoutX="230.0" layoutY="62.0" prefHeight="356.0" prefWidth="367.0" />
+                        <TextField fx:id="txtFieldCourseName" layoutX="44.0" layoutY="100.0" promptText="Course No" />
+                        <TextField fx:id="txtFieldQuizNo" layoutX="44.0" layoutY="171.0" promptText="Quiz No" />
+                        <Button fx:id="btnFindMarks" layoutX="35.0" layoutY="250.0" mnemonicParsing="false" onAction="#onClickFindMarks" prefHeight="25.0" prefWidth="75.0" text="Find Marks" />
+                        <TextField fx:id="txtFieldSID" layoutX="44.0" layoutY="206.0" promptText="Student ID" />
+                        <Button fx:id="btnReset" defaultButton="true" layoutX="138.0" layoutY="250.0" mnemonicParsing="false" onAction="#onClickReset" prefHeight="25.0" prefWidth="75.0" text="Reset" />
+                        <ComboBox fx:id="dropDownFindBy" layoutX="42.0" layoutY="62.0" onAction="#onClickDropDown" prefWidth="150.0" promptText="Find By" />
+                        <TextField fx:id="txtFieldSessionToFindMark" layoutX="44.0" layoutY="135.0" promptText="Session" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Insert QuizMarks">
+          <Tab closable="false" text="Insert QuizMarks">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="quizMarksTableView1" editable="true" layoutX="230.0" layoutY="62.0" onMouseClicked="#onClickRow" prefHeight="356.0" prefWidth="367.0" />
+                        <TextField fx:id="inputFieldCourse" layoutX="43.0" layoutY="100.0" promptText="Course ID" />
+                        <TextField fx:id="txtFieldQuizNo1" layoutX="43.0" layoutY="172.0" promptText="Quiz No." />
+                        <Button fx:id="btnSearch" layoutX="46.0" layoutY="249.0" mnemonicParsing="false" onAction="#onClickSearch" prefHeight="34.0" prefWidth="143.0" text="Search ">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font></Button>
+                        <TextField fx:id="txtFieldSID1" layoutX="43.0" layoutY="208.0" promptText="Student ID (Optional)" />
+                        <Button fx:id="btnReset1" defaultButton="true" layoutX="492.0" layoutY="432.0" mnemonicParsing="false" onAction="#onClickReset1" prefHeight="25.0" prefWidth="105.0" text="Reset Textfields" />
+                        <ComboBox fx:id="dropDownFindQuiz" layoutX="42.0" layoutY="62.0" onAction="#onClickDropDown1" prefWidth="150.0" promptText="Find Quiz By" />
+                        <TextField fx:id="txtFieldSession" layoutX="43.0" layoutY="137.0" promptText="Session" />
+                        <TextField fx:id="txtFieldQuizMarks" layoutX="230.0" layoutY="432.0" prefHeight="25.0" prefWidth="106.0" promptText="Enter Quiz Marks Here" />
+                        <Button fx:id="btnInsert1" layoutX="345.0" layoutY="432.0" mnemonicParsing="false" onAction="#onClickInsert" prefHeight="25.0" prefWidth="62.0" text="Insert" />
+                        <ImageView fx:id="successIcon" fitHeight="25.0" fitWidth="25.0" layoutX="414.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@images/success.png" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
       </TabPane>
    </children>
 </AnchorPane>

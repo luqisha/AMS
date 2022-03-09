@@ -6,6 +6,8 @@
 package ams;
 
 import ams.utils.DBConnect;
+import ams.utils.TableLoader;
+import com.sun.javafx.collections.ObservableListWrapper;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +25,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 /**
@@ -44,10 +48,36 @@ public class QuizMarksController implements Initializable {
     private TextField txtFieldSID;
     @FXML
     private Button btnReset;
-    
+
     private ObservableList<ObservableList> data;
     @FXML
     private ComboBox<String> dropDownFindBy;
+    @FXML
+    private TableView<?> quizMarksTableView1;
+    @FXML
+    private TextField inputFieldCourse;
+    @FXML
+    private TextField txtFieldQuizNo1;
+    @FXML
+    private Button btnSearch;
+    @FXML
+    private TextField txtFieldSID1;
+    @FXML
+    private Button btnReset1;
+    @FXML
+    private ComboBox<String> dropDownFindQuiz;
+    @FXML
+    private TextField txtFieldSession;
+    @FXML
+    private TextField txtFieldQuizMarks;
+    @FXML
+    private Button btnInsert1;
+
+    private TableLoader tableLoader;
+    @FXML
+    private ImageView successIcon;
+    @FXML
+    private TextField txtFieldSessionToFindMark;
 
     /**
      * Initializes the controller class.
@@ -57,141 +87,73 @@ public class QuizMarksController implements Initializable {
         txtFieldCourseName.setText("");
         txtFieldQuizNo.setText("");
         txtFieldSID.setText("");
-        
-        ObservableList<String> data = FXCollections.observableArrayList("CourseNo", "StudentID");
-        dropDownFindBy.setItems(data);
-    }    
+
+        dropDownFindBy.setItems(FXCollections.observableArrayList("CourseNo", "StudentID" ));
+
+        dropDownFindQuiz.setItems(FXCollections.observableArrayList("CourseID", "CourseNo"));
+    }
 
     @FXML
     private void onClickFindMarks(ActionEvent event) throws ClassNotFoundException, SQLException {
         String courseName = txtFieldCourseName.getText();
         String QuizNo = txtFieldQuizNo.getText();
         String SID = txtFieldSID.getText();
-        
-        DBConnect dbc= new DBConnect();
+        String Session = txtFieldSessionToFindMark.getText();
+
+        DBConnect dbc = new DBConnect();
         dbc.connectToDB();
-        
-        
-        
-        if(dropDownFindBy.getSelectionModel().getSelectedItem().equals("CourseNo"))
-        {
-            
-            if(courseName.isEmpty())
-            {
+
+        if (dropDownFindBy.getSelectionModel().getSelectedItem().equals("CourseNo")) {
+
+            if (courseName.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Empty Field");
                 alert.setContentText("Write the name of the Course");
                 alert.show();
-            }
-            else if(QuizNo.isEmpty())
-            {
+            } else if (QuizNo.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Empty Field");
                 alert.setContentText("Write the QuizNo");
                 alert.show();
+            } else if (Session.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Empty Field");
+                alert.setContentText("Write Session");
+                alert.show();
             }
-            else
-            {
-                String query="SELECT StudentID, QuizMarks FROM QuizMark "
-                + "WHERE CourseID = (SELECT CourseID FROM courses WHERE CourseNo='"+courseName+"') AND QuizNo ='"+QuizNo+"';";
-            
-                buildTable(query, quizMarksTableView);
+            else {
+                String query = "SELECT StudentID, QuizMarks FROM QuizMark "
+                        + "WHERE CourseID = (SELECT CourseID FROM Courses WHERE CourseNo='" + courseName + "' AND CourseSession='"+Session+"') AND QuizNo ='" + QuizNo + "';";
+
+                tableLoader.loadTable(query, quizMarksTableView);
             }
-            
-        }
-        else if(dropDownFindBy.getSelectionModel().getSelectedItem().equals("StudentID"))
-        {
-            
-            if(courseName.isEmpty())
-            {
+
+        } else if (dropDownFindBy.getSelectionModel().getSelectedItem().equals("StudentID")) {
+
+            if (courseName.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Empty Field");
                 alert.setContentText("Write the name of the Course!");
                 alert.show();
-            }
-            else if(SID.isEmpty())
-            {
+            } else if (SID.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Empty Field");
                 alert.setContentText("Write the Student ID!");
                 alert.show();
-            }
-            else
-            {
-                String query="SELECT QuizNo, QuizMarks FROM QuizMark "
-                + "WHERE CourseID = (SELECT CourseID FROM courses WHERE CourseNo='"+courseName+"') AND StudentID ='"+SID+"';";
-            
-                buildTable(query, quizMarksTableView);
-            }
-            
-        }
-        else
-        {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("No Option Selected");
-                alert.setContentText("Select what you want to find data by! ");
-                alert.show();
-        }
-          
-    }
-    
-    public void buildTable(String query, TableView tView) throws ClassNotFoundException, SQLException {
-        tView.getItems().clear();
-        tView.getColumns().clear();
-        DBConnect dbc = new DBConnect();
-        dbc.connectToDB();
-        data = FXCollections.observableArrayList();
-        try {
-            
-            //SQL FOR SELECTING ALL OF CUSTOMER
-            
-            //ResultSet
-            ResultSet rs = dbc.queryToDB(query);
+            } else {
+                String query = "SELECT QuizNo, QuizMarks FROM QuizMark "
+                        + "WHERE CourseID = (SELECT CourseID FROM Courses WHERE CourseNo='" + courseName + "' AND CourseSession='"+Session+ "') AND StudentID ='" + SID + "';";
 
-            /**
-             * ********************************
-             * TABLE COLUMN ADDED DYNAMICALLY *
-             *********************************
-             */
-            for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-                //We are using non property style for making dynamic table
-                final int j = i;
-                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
-                col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
-                        return new SimpleStringProperty(param.getValue().get(j).toString());
-                    }
-                });
- 
-                tView.getColumns().addAll(col);
-                System.out.println("Column [" + i + "] ");
+                tableLoader.loadTable(query, quizMarksTableView);
             }
- 
-            /**
-             * ******************************
-             * Data added to ObservableList *
-             *******************************
-             */
-            while (rs.next()) {
-                //Iterate Row
-                ObservableList<String> row = FXCollections.observableArrayList();
-                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                    //Iterate Column
-                    row.add(rs.getString(i));
-                }
-                System.out.println("Row [1] added " + row);
-                data.add(row);
- 
-            }
- 
-            //FINALLY ADDED TO TableView
-            tView.setItems(data);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error on Building Data");
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Option Selected");
+            alert.setContentText("Select what you want to find data by! ");
+            alert.show();
         }
-    
-    dbc.disconnectFromDB();
+
     }
 
     @FXML
@@ -206,18 +168,136 @@ public class QuizMarksController implements Initializable {
 
     @FXML
     private void onClickDropDown(ActionEvent event) {
-        if(dropDownFindBy.getSelectionModel().getSelectedItem().equals("CourseNo"))
-        {
+        if (dropDownFindBy.getSelectionModel().getSelectedItem().equals("CourseNo")) {
             txtFieldSID.setText("");
             txtFieldSID.setDisable(true);
             txtFieldQuizNo.setDisable(false);
-        }
-        else if (dropDownFindBy.getSelectionModel().getSelectedItem().equals("StudentID"))
-        {
+        } else if (dropDownFindBy.getSelectionModel().getSelectedItem().equals("StudentID")) {
             txtFieldQuizNo.setText("");
             txtFieldQuizNo.setDisable(true);
             txtFieldSID.setDisable(false);
         }
     }
-    
+
+    @FXML
+    private void onClickSearch(ActionEvent event) throws ClassNotFoundException, SQLException {
+        String course = inputFieldCourse.getText();
+        String session = txtFieldSession.getText();
+        String qNo = txtFieldQuizNo1.getText();
+        String sID = txtFieldSID1.getText();
+        
+        if (course.isEmpty() || session.isEmpty() || qNo.isEmpty() || sID.isEmpty() ){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Empty");
+            alert.setContentText("Fill up the textfields ");
+            alert.show();
+        }
+
+        else if (dropDownFindQuiz.getSelectionModel().getSelectedItem().equals("CourseID")) {
+
+            String query = "SELECT StudentCourseJoin.StudentID as StudentID, QuizMark.QuizMarks as QuizMarks \n"
+                    + "FROM StudentCourseJoin \n"
+                    + "LEFT JOIN QuizMark \n"
+                    + "ON StudentCourseJoin.StudentID = QuizMark.StudentID AND QuizMark.QuizNo=" + qNo + "\n"
+                    + "WHERE StudentCourseJoin.CourseID =" + course
+                    + (sID.isEmpty() ? "" : (" AND StudentCourseJoin.StudentID like '%" + sID + "%'"));
+
+            System.out.println(query);
+            quizMarksTableView1.getItems().clear();
+            quizMarksTableView1.getColumns().clear();
+            tableLoader.loadTable(query, quizMarksTableView1);
+            dropDownFindQuiz.setDisable(true);
+
+        } else if (dropDownFindQuiz.getSelectionModel().getSelectedItem().equals("CourseNo")) {
+
+            String query = "SELECT StudentCourseJoin.StudentID as StudentID, QuizMark.QuizMarks as QuizMarks \n"
+                    + "FROM StudentCourseJoin \n"
+                    + "LEFT JOIN QuizMark \n"
+                    + "ON StudentCourseJoin.StudentID = QuizMark.StudentID AND QuizMark.QuizNo=" + qNo + "\n"
+                    + "WHERE StudentCourseJoin.CourseID = (SELECT CourseID FROM Courses WHERE CourseNo= '" + course + "' AND CourseSession= '" + session + "')"
+                    + (sID.isEmpty() ? "" : (" AND StudentCourseJoin.StudentID like '%" + sID + "%'"));
+
+            System.out.println(query);
+            tableLoader.loadTable(query, quizMarksTableView1);
+            dropDownFindQuiz.setDisable(true);
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Option Selected");
+            alert.setContentText("Select what you want to find data by! ");
+            alert.show();
+        }
+
+    }
+
+    @FXML
+    private void onClickReset1(ActionEvent event) {
+        inputFieldCourse.setText("");
+        txtFieldQuizNo1.setText("");
+        txtFieldSID1.setText("");
+        txtFieldSession.setText("");
+        txtFieldQuizMarks.setText("");
+        dropDownFindQuiz.setDisable(false);
+        successIcon.setVisible(false);
+
+    }
+
+    @FXML
+    private void onClickInsert(ActionEvent event) throws SQLException, ClassNotFoundException {
+        String course = inputFieldCourse.getText();
+        String session = txtFieldSession.getText();
+        String qNo = txtFieldQuizNo1.getText();
+        String sID = txtFieldSID1.getText();
+        String qMarks = txtFieldQuizMarks.getText(); 
+        String insertQuery;
+        DBConnect dbc = new DBConnect();
+        dbc.connectToDB();
+        
+        ObservableListWrapper row = (ObservableListWrapper) quizMarksTableView1.getSelectionModel().getSelectedItem();
+        sID = row.get(0).toString();
+
+        if (dropDownFindQuiz.getSelectionModel().getSelectedItem().equals("CourseNo")) {
+           
+            String query = "SELECT CourseID FROM Courses WHERE CourseNo= '" + course + "' AND CourseSession= '" + session + "'";
+            ResultSet rs = dbc.queryToDB(query);
+            course = rs.getString("CourseID");
+        }
+        
+        insertQuery = "IF Not Exists(SELECT * FROM QuizMark WHERE CourseID = "+ course + "AND StudentID='" + sID + "' AND QuizNo=" + qNo + ")\n"
+                + "BEGIN\n"
+                + "INSERT INTO QuizMark values(" +course+ ", '"  +sID+ "', " +qNo+ "," +qMarks+")\n"
+                + "END\n"
+                + "ELSE\n"
+                + "BEGIN\n"
+                + "UPDATE QuizMark\n"
+                + "SET QuizMarks = " + qMarks + "\n"
+                + "WHERE CourseID = "+ course + "AND StudentID='" + sID + "' AND QuizNo=" + qNo + "\n"
+                + "END";
+                
+        if(dbc.insertDataToDB(insertQuery) != -1){
+            successIcon.setVisible(true);
+            btnSearch.fire();
+            quizMarksTableView1.getSelectionModel().selectNext();
+        }
+        
+    }
+
+    @FXML
+    private void onClickDropDown1(ActionEvent event) {
+
+        if (dropDownFindQuiz.getSelectionModel().getSelectedItem().equals("CourseID")) {
+            txtFieldSession.setDisable(true);
+            inputFieldCourse.setPromptText("CourseID.");
+        } else if (dropDownFindQuiz.getSelectionModel().getSelectedItem().equals("CourseNo")) {
+            txtFieldSession.setDisable(false);
+            inputFieldCourse.setPromptText("CourseNo.");
+        }
+    }
+
+    @FXML
+    private void onClickRow(MouseEvent event) {
+        successIcon.setVisible(false);
+
+    }
+
 }

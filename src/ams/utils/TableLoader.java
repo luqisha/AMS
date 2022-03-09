@@ -52,7 +52,13 @@ public class TableLoader {
                 TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
                 col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
                     public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
-                        return new SimpleStringProperty(param.getValue().get(j).toString());
+                        
+                        if(param.getValue().get(j) == null ){
+                            return new SimpleStringProperty("Null");
+                            
+                        }
+                        else return new SimpleStringProperty(param.getValue().get(j).toString());
+                        
                     }
                 });
  

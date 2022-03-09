@@ -33,7 +33,7 @@ public class SceneLoader {
                 Scene currentScr = new Scene(root);
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 currentStage.setScene(currentScr);
-                currentStage.setMaximized(true);
+                currentStage.setMaximized(false);
                 currentStage.show();
                 return true;
         } catch (Exception e) {
