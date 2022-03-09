@@ -86,6 +86,7 @@ public class CourseDetailsController implements Initializable {
             //this.thiscourseid = "1001"; //how to get the course id from previous page?:/
             this.thiscourseid = TableLoader.CourseId; 
             
+            
             System.out.println("Init " + thiscourseid);
             this.qry_getAll = "Select * from Students where Students.StudentID in (select distinct StudentCourseJoin.StudentID from StudentCourseJoin where CourseID = '" + this.thiscourseid + "')";
 
@@ -153,11 +154,9 @@ public class CourseDetailsController implements Initializable {
                 alert.setContentText(id +" has been added!");
                 alert.show();
             }
-            else { //insertion failed
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Failed :(");
-                alert.setContentText("Id exists?");
-                alert.show();
+            else { //insertio
+                                sceneLoader.loadPage("AddStudent.fxml", this, event);
+
             }
 
             
@@ -248,7 +247,9 @@ public class CourseDetailsController implements Initializable {
 //            COUNT(AID) FROM ATTENDS where studentID =190104143 AND CourseNo = CSE3101) / totalClasses * 10  as att_mark 
 //            from Students
 
-        String query_withAttendMarks =  "Select *, ((SELECT   COUNT(AID) FROM ATTENDS where studentID = Students.StudentID AND CourseID = " + this.thiscourseid + ") * 10.0)/" + totalClasses + "  as att_mark from Students where Students.StudentID in (select distinct StudentCourseJoin.StudentID from StudentCourseJoin where CourseID = " + this.thiscourseid + ")";
+        String query_withAttendMarks =  "Select *, "
+                + "((SELECT   COUNT(AID) FROM ATTENDS where "
+                + "studentID = Students.StudentID AND CourseID = " + this.thiscourseid + ") * 10.0)/" + totalClasses + "  as att_mark from Students where Students.StudentID in (select distinct StudentCourseJoin.StudentID from StudentCourseJoin where CourseID = " + this.thiscourseid + ")";
         
         try {
             buildTable(query_withAttendMarks);

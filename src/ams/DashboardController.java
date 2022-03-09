@@ -50,8 +50,6 @@ public class DashboardController implements Initializable {
     private TableLoader tableLoader;
  
     private SceneLoader sceneLoader;
-    @FXML
-    private Button refrestableBtn;
 
     /**
      * Initializes the controller class.
@@ -108,7 +106,6 @@ public class DashboardController implements Initializable {
         tableLoader.loadTable("Select * from Courses", coursesTable);
     }
 
-    @FXML
     private void onClickRefresh(ActionEvent event) {
         try {
             buildTable();

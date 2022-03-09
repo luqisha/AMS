@@ -164,6 +164,7 @@ public class QuizMarksController implements Initializable {
         dropDownFindBy.getSelectionModel().clearSelection();
         txtFieldSID.setDisable(false);
         txtFieldQuizNo.setDisable(false);
+        txtFieldSessionToFindMark.setText("");
     }
 
     @FXML
@@ -186,10 +187,10 @@ public class QuizMarksController implements Initializable {
         String qNo = txtFieldQuizNo1.getText();
         String sID = txtFieldSID1.getText();
         
-        if (course.isEmpty() || session.isEmpty() || qNo.isEmpty() || sID.isEmpty() ){
+        if (course.isEmpty() || qNo.isEmpty() ){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Empty");
-            alert.setContentText("Fill up the textfields ");
+            alert.setContentText("Fill up the Course and QuizNo ");
             alert.show();
         }
 

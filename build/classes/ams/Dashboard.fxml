@@ -16,7 +16,6 @@
       <TextField fx:id="courseTitleTxt" layoutX="57.0" layoutY="99.0" prefHeight="30.0" prefWidth="208.0" promptText="Course Title" />
       <TextField fx:id="sessionTxt" layoutX="57.0" layoutY="137.0" prefHeight="30.0" prefWidth="208.0" promptText="Session" />
       <Button fx:id="insertBtn" layoutX="451.0" layoutY="137.0" mnemonicParsing="false" onAction="#onClickInsert" prefHeight="30.0" prefWidth="108.0" text="Insert" />
-      <Button fx:id="refrestableBtn" layoutX="444.0" layoutY="427.0" mnemonicParsing="false" onAction="#onClickRefresh" prefHeight="30.0" prefWidth="121.0" text="Refresh Table" />
-      <Button layoutX="475.0" layoutY="87.0" mnemonicParsing="false" onAction="#onClickChecker" text="Checker" />
+      <Button layoutX="451.0" layoutY="91.0" mnemonicParsing="false" onAction="#onClickChecker" prefHeight="30.0" prefWidth="108.0" text="Go To Course" />
    </children>
 </AnchorPane>
